@@ -1,7 +1,0 @@
-six
-flask
-requests
-gunicorn
-pyopenssl
-ndg-httpsclient
-pyasn1
