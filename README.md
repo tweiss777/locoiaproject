@@ -16,3 +16,9 @@ Please don't use a github API client (i.e. using an HTTP request library like re
 There are also a number of places in the code marked `# BONUS` where additional code would yield a more robust or performant service.  If you
 finish the above quickly, feel free to investigate these added features or anything else you think might make for an interesting demo.  Please
 don't work on the additional optional features before the main task is complete.
+
+# Runnign the app
+
+```bash
+gunicorn gistapi.gistapi:app
+```
