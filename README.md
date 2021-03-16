@@ -17,8 +17,19 @@ There are also a number of places in the code marked `# BONUS` where additional 
 finish the above quickly, feel free to investigate these added features or anything else you think might make for an interesting demo.  Please
 don't work on the additional optional features before the main task is complete.
 
-# Runnign the app
+# Running the app
 
 ```bash
+# Directly
+python -m gistapi.gistapi
+
+# Via gunicorn
 gunicorn gistapi.gistapi:app
+
+# Via Docker
+docker build . -t flask-app
+docker run -p 8000:8000 flask-app
+
+# Via docker-compose
+docker-compose up
 ```
