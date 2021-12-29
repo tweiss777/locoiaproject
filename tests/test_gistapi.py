@@ -41,5 +41,37 @@ def test_search(client):
                      'username': 'justdionysus',
                      'pattern': 'TerbiumLabsChallenge_[0-9]+',
                      'matches': ['https://gist.github.com/justdionysus/6b2972aa971dd605f524']}
+
     assert result_dict == expected_dict
 
+
+'''Test case to handle if the user is not found via the gist api'''
+def test_search_fail(client):
+    dataTopass = {
+        'username': 'badusername',
+        'pattern':  '(.docx|.pdf)'
+    }
+
+    actual_result = client.post('/api/v1/search',
+                     data=json.dumps(dataTopass),
+                     headers={'content-type': 'application/json'})
+    actual_result = json.loads(actual_result.data.decode('utf-8'))
+    
+    expected_result = {
+        'status': 'failure',
+        'username': 'badusername',
+        'pattern': '(.docx|.pdf)',
+        'matches': ['Error: User not found']
+    }
+
+    assert expected_result == actual_result
+
+
+# test case for valid user input
+def test_validate_input(client):
+    dataToPass = {"something":"hello world"}
+    actual_result = client.post('/api/v1/search',data=json.dumps(dataToPass),headers={'content-type': 'application/json'})
+    actual_result = json.loads(actual_result.data.decode('utf-8'))
+
+    expected_result = "Invalid arguments"
+    assert expected_result == actual_result
